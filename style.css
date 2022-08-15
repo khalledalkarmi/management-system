@@ -1,0 +1,15 @@
+
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid purple;
+
+}
+
+tr th {
+    border: 1px solid;
+    text-align: center;
+}
+
