@@ -77,8 +77,8 @@ function createRow(employee) {
 table.append(crateThead(employeeArray[0]));
 table.append(tbody);
 
-
-document.body.append(table);
+const main = document.getElementsByTagName("main");
+main[0].append(table);
 
 
 
