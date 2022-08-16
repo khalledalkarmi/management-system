@@ -91,6 +91,7 @@ function getData(event) {
     let level = document.getElementById("level").value;
     let imageUrl = document.getElementById("imageUrl").value;
     let employeeForm = new employee(id, fullName, department, level, imageUrl);
+    localStorage.setItem("employee", JSON.stringify(employeeForm));
     console.log(employeeForm);
     createCard(employeeForm);
     event.preventDefault();
