@@ -51,4 +51,8 @@ use the below table to calculate the salary depends on the employee level.
 - Checkout a new branch called dom for today's task.
 - In the render function :
  You have to create the table of the employees and render it in the main of the home.html 
-- add a style to your website 
+- add a style to your website.
+
+# Task 3 (Event)
+
+-add form to get data from user and display it via card 
