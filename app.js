@@ -102,7 +102,7 @@ form.addEventListener('submit', getData);
 function createCard(employeeForm) {
 
     let divCol = document.createElement("div");
-    divCol.className = "col-sm-6";
+    divCol.className = "col-sm-3";
     cardDiv.append(divCol);
 
     let card = document.createElement("div");
