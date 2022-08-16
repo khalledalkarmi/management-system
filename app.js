@@ -37,7 +37,7 @@ let tbody = document.createElement("tbody");
 for (const employee of employeeArray) {
     console.log(employee.fullName + " " + employee.salary);
 
-    createRow(employee);
+    // createRow(employee);
 }
 
 
@@ -45,40 +45,94 @@ for (const employee of employeeArray) {
 //TODO: make colFunction
 //TODO: make tableFunction
 
-function crateThead(employee) {
-    let thead = document.createElement("thead");
-    let tr = document.createElement("tr");
+// function crateThead(employee) {
+//     let thead = document.createElement("thead");
+//     let tr = document.createElement("tr");
 
-    for (const iterator of Object.entries(employee)) {
-        if (iterator[0] != "imageUrl") {
-            let th = document.createElement("th");
-            th.textContent = iterator[0];
-            tr.append(th);
-        }
-    }
-    thead.append(tr);
+//     for (const iterator of Object.entries(employee)) {
+//         if (iterator[0] != "imageUrl") {
+//             let th = document.createElement("th");
+//             th.textContent = iterator[0];
+//             tr.append(th);
+//         }
+//     }
+//     thead.append(tr);
 
-    return thead;
-}
+//     return thead;
+// }
 
-function createRow(employee) {
-    let tr = document.createElement("tr");
-    for (const iterator of Object.entries(employee)) {
-        if (iterator[0] != "imageUrl") {
-            let th = document.createElement("th");
-            th.textContent = iterator[1];
-            tr.append(th);
-        }
-    }
+// function createRow(employee) {
+//     let tr = document.createElement("tr");
+//     for (const iterator of Object.entries(employee)) {
+//         if (iterator[0] != "imageUrl") {
+//             let th = document.createElement("th");
+//             th.textContent = iterator[1];
+//             tr.append(th);
+//         }
+//     }
 
-    tbody.append(tr);
-}
+//     tbody.append(tr);
+// }
 
-table.append(crateThead(employeeArray[0]));
-table.append(tbody);
+// table.append(crateThead(employeeArray[0]));
+// table.append(tbody);
 
 const main = document.getElementsByTagName("main");
-main[0].append(table);
+// main[0].append(table);
+
+
+let form = document.getElementById("form");
+let cardDiv = document.getElementById("cardDiv");
+
+function getData(event) {
+    let id = document.getElementById("ID").value;
+    let fullName = document.getElementById("fullName").value;
+    let department = document.getElementById("department").value;
+    let level = document.getElementById("level").value;
+    let imageUrl = document.getElementById("imageUrl").value;
+    let employeeForm = new employee(id, fullName, department, level, imageUrl);
+    console.log(employeeForm);
+    createCard(employeeForm);
+    event.preventDefault();
+
+}
+
+form.addEventListener('submit', getData);
+
+function createCard(employeeForm) {
+
+    let divCol = document.createElement("div");
+    divCol.className = "col-sm-6";
+    cardDiv.append(divCol);
+
+    let card = document.createElement("div");
+    card.className = "card"
+    divCol.append(card);
+
+    let imgCard = document.createElement("img");
+    imgCard.className = "card-img-top";
+    imgCard.style.width="50px"
+    imgCard.src = employeeForm.imageUrl
+    card.append(imgCard)
+
+    let cardBody = document.createElement("div");
+    cardBody.className = "card-body"
+    card.append(cardBody);
+
+    let cardTitle = document.createElement("h5");
+    cardTitle.className = "card-title"
+    cardTitle.textContent = "hi"
+    cardBody.append(cardTitle);
+
+    let cardText = document.createElement("p");
+    cardText.className = "card-text"
+    cardText.textContent = "Name: " + employeeForm.fullName + " - ID: " + employeeForm.employeeID +  " Department: " + employeeForm.department + " - Level: " + employeeForm.level
+    cardBody.append(cardText);
+
+}
+
+
+
 
 
 
