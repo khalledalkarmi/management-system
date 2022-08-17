@@ -111,7 +111,7 @@ function createCard(employeeForm) {
     divCol.append(card);
 
     let imgCard = document.createElement("img");
-    imgCard.className = "card-img-top";
+    imgCard.className = "card-img-top w-100";
     imgCard.style.width = "100px"
     imgCard.src = employeeForm.imageUrl
     card.append(imgCard)
@@ -127,7 +127,8 @@ function createCard(employeeForm) {
 
     let cardText = document.createElement("p");
     cardText.className = "card-text"
-    cardText.textContent = "Name: " + employeeForm.fullName + " - ID: " + employeeForm.employeeID + " Department: " + employeeForm.department + " - Level: " + employeeForm.level
+    cardText.setAttribute('style', 'white-space: pre;');
+    cardText.textContent = "- Name: " + employeeForm.fullName + " \n\r- ID: " + employeeForm.employeeID + "\n\r- Department: " + employeeForm.department + "\n\r- Level: " + employeeForm.level
     cardBody.append(cardText);
 
 }
