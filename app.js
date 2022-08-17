@@ -91,9 +91,13 @@ function getData(event) {
     let level = document.getElementById("level").value;
     let imageUrl = document.getElementById("imageUrl").value;
     let employeeForm = new employee(id, fullName, department, level, imageUrl);
-    localStorage.setItem("employee" + event.timeStamp, JSON.stringify(employeeForm));
-    console.log(employeeForm);
-    createCard(employeeForm);
+    if (checkEmployeeIfExist(id)) {
+        alert("Employee already exist")
+    } else {
+        localStorage.setItem("employee" + event.timeStamp, JSON.stringify(employeeForm));
+        console.log(employeeForm);
+        createCard(employeeForm);
+    }
     event.preventDefault();
 
 }
@@ -145,9 +149,7 @@ window.onload = () => {
 
 
 function getAllStorageData() {
-
-
-    var values = [],
+    let values = [],
         keys = Object.keys(localStorage),
         i = keys.length;
 
@@ -158,6 +160,21 @@ function getAllStorageData() {
         }
     }
     return values;
+}
+
+function checkEmployeeIfExist(employeeID) {
+    const employeeInStorage = getAllStorageData();
+
+    if (employeeInStorage.length > 0) {
+        for (let index = 0; index < employeeInStorage.length; index++) {
+            const element = employeeInStorage[index];
+            if (element.employeeID == employeeID) {
+                return true
+            }
+        }
+    }
+    return false;
+
 }
 
 
