@@ -91,7 +91,7 @@ function getData(event) {
     let level = document.getElementById("level").value;
     let imageUrl = document.getElementById("imageUrl").value;
     let employeeForm = new employee(id, fullName, department, level, imageUrl);
-    localStorage.setItem("employee", JSON.stringify(employeeForm));
+    localStorage.setItem("employee" + event.timeStamp, JSON.stringify(employeeForm));
     console.log(employeeForm);
     createCard(employeeForm);
     event.preventDefault();
@@ -112,7 +112,7 @@ function createCard(employeeForm) {
 
     let imgCard = document.createElement("img");
     imgCard.className = "card-img-top";
-    imgCard.style.width="50px"
+    imgCard.style.width = "100px"
     imgCard.src = employeeForm.imageUrl
     card.append(imgCard)
 
@@ -127,9 +127,36 @@ function createCard(employeeForm) {
 
     let cardText = document.createElement("p");
     cardText.className = "card-text"
-    cardText.textContent = "Name: " + employeeForm.fullName + " - ID: " + employeeForm.employeeID +  " Department: " + employeeForm.department + " - Level: " + employeeForm.level
+    cardText.textContent = "Name: " + employeeForm.fullName + " - ID: " + employeeForm.employeeID + " Department: " + employeeForm.department + " - Level: " + employeeForm.level
     cardBody.append(cardText);
 
+}
+
+window.onload = () => {
+    const employeeInStorage = getAllStorageData();
+    if (employeeInStorage.length > 0) {
+        for (let index = 0; index < employeeInStorage.length; index++) {
+            const element = employeeInStorage[index];
+            createCard(element);
+        }
+    }
+}
+
+
+function getAllStorageData() {
+
+
+    var values = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while (i--) {
+        const data = JSON.parse(localStorage.getItem(keys[i]));
+        if (data.fullName) {
+            values.push(data);
+        }
+    }
+    return values;
 }
 
 
